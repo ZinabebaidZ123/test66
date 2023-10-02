@@ -14,7 +14,7 @@ class HomeController extends Controller
 
     function landing()
     {
-$video=Video::first()->get(['video','id']);
+$video=Video::first(['video','id']);
 
         $services = Service::get(['name', 'image', 'description']);
         $partners = Partner::get(['logo']);

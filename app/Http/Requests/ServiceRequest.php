@@ -21,17 +21,20 @@ class ServiceRequest extends FormRequest
      */
     public function rules(): array
     {
+        // dd($this->service->id);
         $rules = [
-            'description' =>'required|min:10 |max:600' ,
-            'name' => 'required|min:3|max:200|unique:services,name,except,id' ,
+            'description' => 'required|min:10 |max:600',
+
         ];
-        // Check if it's an update operation
+
         if ($this->isMethod('patch') || $this->isMethod('put')) {
-            // Make the image field optional during update
-            $rules['image'] = 'sometimes|image|mimes:jpeg,png,jpg,gif|max:3048'; // Adjust the validation rules as needed
+
+            $rules['image'] = 'sometimes|image|mimes:jpeg,png,jpg,gif|max:3048';
+            $rules['name'] = 'required|min:3|max:200|unique:services,name,' . $this->service->id;
         } else {
-            // For create operation, make the image field required
-            $rules['image'] = 'required|image|mimes:jpeg,png,jpg,gif|max:2048'; // Adjust the validation rules as needed
+
+            $rules['image'] = 'required|image|mimes:jpeg,png,jpg,gif|max:2048';
+            $rules['name'] = 'required|min:3|max:200|unique:services,name';
         }
         return $rules;
     }

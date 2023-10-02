@@ -79,7 +79,7 @@ $('#contact').submit(function(e){
                   $("#message-error").text('')
                 // alert('success!')
                 Swal.fire(
-  'Good job!',
+ 
   'message send successfully',
   'success'
 )

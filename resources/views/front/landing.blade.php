@@ -5,9 +5,11 @@
 
        <section class="hero ">
        <div class="video-container ">
-       <video id="background-video" autoplay muted loop>
-          <source src="{{asset($video[0]::PATH.$video[0]->video)}}"  type="video/mp4">
-        </video>  
+       @if($video)
+      <video id="background-video" autoplay muted loop>
+        <source src="{{asset($video::PATH.$video->video)}}"  type="video/mp4">
+      </video> 
+      @endif 
 
         <div class="over-lay ">
       <div class="banner-img-mob d-flex justify-content-center align-items-center  ">
